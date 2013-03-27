@@ -7,7 +7,7 @@ Eharbor::Application.routes.draw do
   match "about" => 'info#about'
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  root :to => 'auctions#show'
+  root :to => 'auctions#index'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
