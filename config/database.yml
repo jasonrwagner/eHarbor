@@ -21,7 +21,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: kpipe_production
+  database: eharbor_production
   pool: 5
   username: root
   password:
