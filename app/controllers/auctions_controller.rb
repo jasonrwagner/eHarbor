@@ -5,34 +5,37 @@ class AuctionsController < ApplicationController
   end
 
   def new
-  	@auctions = Auction.new
+  	@auction = Auction.new
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @auctions }
-    end 
   end
 
-   def create
-    @auctions = Auction.new(params[:auction])
-
-    respond_to do |format|
-     if @auctions.save
-        format.html { redirect_to @auctions, notice: 'Auction was successfully created.' }
-        format.json { render json: @auctions, status: :created, location: @auctions }
-      else
-        format.html { render action: "new" }
-      end
-
+  def create
+    @auction = Auction.new(params[:auction])
+    if @auction.save
+      redirect_to @auction
+    else
+      render 'new'
     end
+
   end
 
   def show
-  	@auctions = Auction.find(params[:id])
+  	@auction = Auction.find(params[:id])
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @auctions }
+  end
+
+  def edit
+    @auction = Auction.find(params[:id])
+  end
+
+  def update
+    @auction = Auction.find(params[:id])
+    if  @auction.update_attributes(params[:auction])
+      redirect_to @auction
+    else
+      render 'edit'
     end
   end
+
+
 end

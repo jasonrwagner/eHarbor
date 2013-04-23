@@ -8,7 +8,15 @@ gem 'rails', '3.2.9'
 gem 'sqlite3', :group => [:development, :test]
 gem 'pg'
 gem 'heroku'
-gem 'taps'
+gem 'mysql2'
+gem 'taps', :require => false # has an sqlite dependency, which heroku hates
+gem 'devise'
+
+group :test, :development do
+
+  gem 'rspec-rails'
+end
+
 
 
 # Gems used only for assets and not required

@@ -1,6 +1,10 @@
 Eharbor::Application.routes.draw do
 
-  resources :auctions
+  devise_for :users
+
+  resources :auctions 
+  resources :bids
+  
 
   match "about/:thing" => 'info#about'
 

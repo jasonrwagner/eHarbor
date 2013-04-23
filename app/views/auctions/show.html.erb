@@ -1,12 +1,45 @@
 <div id="name">
   <p><b>Name:</b>
-    <%= @auctions.name %>
+    <%= @auction.name %>
   </p>
 </div>
+
+<dl class="info">
+  <dt>Posted:</dt>
+  <dd><%= time_ago_in_words @auction.created_at %></dd>
+
+  <dt>Bids</dt>
+  <dd><%= @auctions.bids.count %></dd>
+
+  <% if @auction.highest_bid %>
+    <dt>Highest Bid</dt>
+    <dd><%= number_to_currency #FINISH %>/dd>
+  <% end %>
+</dl>
 
 <div id="description">
   <p>
     <b>Description:</b>
-  	<%= @auctions.description %>
+  	<%= @auction.description %>
   </p>
 </div>
+
+<div id="bid">
+  <h3>Place a Bid</h3>
+
+	<%= form_for @bid || Bid.new do |form| %>
+    <p>
+      <% if form.object.errors.any? %>
+        <%= form.object.errors.full_messages.to_sentence %>
+
+      <% end %>
+    </p>
+    <%= form.hidden_field :auction_id, :value => @auction.id %>
+      <%= form.label :amount %>
+      <%= form.text_field :amount %>
+      <%= form.submit "Bid" %>  
+	  <% end %>
+</div>
+
+<%= link_to "Edit", edit_auction_path(@auction) %>
+<%= link_to "Back", auctions_path %>

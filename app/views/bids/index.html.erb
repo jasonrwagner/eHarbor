@@ -1,0 +1,11 @@
+<h1>bids</h1>
+    
+  <ul>
+    <% @highest_bid.each do |bid| %>
+      <li>
+        <%= bid.amount %>
+      </li>
+
+    <% end %>
+  </ul>
+
